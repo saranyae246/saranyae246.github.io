@@ -6,29 +6,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Portfolio of Saranya E, Software Engineer specializing in Java, Spring Boot, REST APIs, microservices, and database development.">
+    <title>Saranya E | AI Engineer</title>
 
-    <title>Saranya E | Java Backend Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
-            --accent: #4f46e5;
-            --ink: #172033;
-            --muted: #64748b;
-            --bg: #f8fafc;
-            --card: #ffffff;
+            --bg: #f4f7fa;
+            --surface: #ffffff;
+            --ink: #12202f;
+            --muted: #566577;
+            --line: #dbe3ec;
+            --accent: #0b7285;
+            --accent-soft: #dff3f6;
+            --amber: #e8890c;
+            --code-bg: #0f1c2b;
+            --code-ink: #cfe3f0;
+            --code-key: #7dd3e0;
+            --code-str: #f6c177;
+            --code-num: #f2a0b5;
+            --head: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+            --body: "IBM Plex Sans", "Segoe UI", Arial, sans-serif;
+            --mono: "IBM Plex Mono", Consolas, monospace;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0c1520;
+                --surface: #132130;
+                --ink: #e7eef5;
+                --muted: #9db0c2;
+                --line: #243649;
+                --accent: #5cc8d9;
+                --accent-soft: #15333d;
+                --amber: #f5a83d;
+                --code-bg: #08111b;
+            }
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        html {
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: var(--body);
             background: var(--bg);
             color: var(--ink);
-            line-height: 1.7;
+            line-height: 1.65;
         }
 
         a {
@@ -36,181 +70,548 @@
             text-decoration: none;
         }
 
-        a:hover {
-            text-decoration: underline;
+        a:focus-visible,
+        .btn:focus-visible {
+            outline: 3px solid var(--amber);
+            outline-offset: 3px;
+            border-radius: 6px;
         }
 
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Header */
         header {
             position: sticky;
             top: 0;
-            z-index: 10;
-            background: rgba(255, 255, 255, .94);
-            border-bottom: 1px solid #e5e7eb;
+            z-index: 20;
+            background: color-mix(in srgb, var(--bg) 88%, transparent);
             backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--line);
         }
 
         nav {
-            max-width: 1050px;
-            margin: auto;
-            padding: 16px 22px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
+            padding-top: 14px;
+            padding-bottom: 14px;
         }
 
         .logo {
-            font-size: 1.15rem;
+            font-family: var(--head);
             font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--ink);
+        }
+
+        .logo span {
+            color: var(--amber);
         }
 
         .nav-links {
             display: flex;
             flex-wrap: wrap;
-            gap: 16px;
+            gap: 4px 20px;
         }
 
         .nav-links a {
-            color: var(--ink);
-            font-size: .92rem;
+            color: var(--muted);
+            font-size: .93rem;
+            font-weight: 500;
         }
 
-        main {
-            max-width: 1050px;
-            margin: auto;
-            padding: 0 22px;
-        }
-
-        section {
-            padding: 64px 0;
-        }
-
-        .hero {
-            min-height: 74vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-        }
-
-        .tag {
-            display: inline-block;
-            padding: 5px 12px;
-            border-radius: 99px;
-            background: #eef2ff;
+        .nav-links a:hover {
             color: var(--accent);
-            font-size: .85rem;
-            font-weight: 700;
         }
 
-        h1 {
-            font-size: clamp(2.5rem, 7vw, 4.8rem);
-            line-height: 1.1;
-            letter-spacing: -2px;
-            margin: 22px 0 12px;
+        /* Sections */
+        section {
+            padding: 80px 0;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--head);
+            margin: 0;
+            line-height: 1.12;
         }
 
         h2 {
-            font-size: 2rem;
-            letter-spacing: -1px;
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            letter-spacing: -.02em;
+            margin-bottom: 8px;
         }
 
-        .intro {
-            max-width: 650px;
+        .lead {
             color: var(--muted);
-            font-size: 1.1rem;
+            max-width: 62ch;
+            margin: 0 0 32px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 72px 0 56px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr .85fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            font-weight: 800;
+            letter-spacing: -.035em;
+            margin-bottom: 18px;
+        }
+
+        .role {
+            font-weight: 600;
+            color: var(--accent);
+            margin: 0 0 12px;
+        }
+
+        .hero .lead {
+            font-size: 1.08rem;
+            color: var(--muted);
+            margin-bottom: 28px;
         }
 
         .buttons {
             display: flex;
-            gap: 12px;
             flex-wrap: wrap;
-            margin-top: 20px;
+            gap: 12px;
         }
 
         .btn {
             display: inline-block;
-            padding: 11px 18px;
-            border: 1px solid var(--accent);
-            border-radius: 9px;
-            font-weight: 700;
+            padding: 12px 22px;
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+            font-weight: 600;
+            transition: transform .15s ease, background .15s ease;
         }
 
-        .primary {
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn.primary {
             background: var(--accent);
-            color: white;
+            color: var(--bg);
         }
 
-        .secondary {
-            background: white;
+        .btn.secondary {
             color: var(--accent);
         }
 
-        .grid {
+        .btn.secondary:hover {
+            background: var(--accent-soft);
+        }
+
+        /* Hero visual: photo + API response */
+        .hero-visual {
+            position: relative;
+            padding-top: 56px;
+        }
+
+        .photo {
+            position: absolute;
+            top: 0;
+            right: 14px;
+            z-index: 2;
+            width: 116px;
+            height: 116px;
+            border-radius: 50%;
+            border: 4px solid var(--bg);
+            background: var(--accent);
+            color: var(--bg);
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 18px;
+            place-items: center;
+            font-family: var(--head);
+            font-weight: 800;
+            font-size: 2rem;
+            overflow: hidden;
         }
 
-        .card {
-            padding: 22px;
-            border: 1px solid #e5e7eb;
+        .photo img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .code {
+            background: var(--code-bg);
+            color: var(--code-ink);
             border-radius: 16px;
-            background: var(--card);
-            box-shadow: 0 5px 18px rgba(15, 23, 42, .035);
+            overflow: hidden;
+            box-shadow: 0 18px 40px -18px rgba(8, 17, 27, .55);
+            font-family: var(--mono);
+            font-size: .83rem;
+            animation: rise .7s ease both;
         }
 
-        .card h3 {
-            margin-top: 0;
+        @keyframes rise {
+            from {
+                opacity: 0;
+                transform: translateY(18px);
+            }
         }
 
-        .card p,
-        .muted {
+        .code-bar {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            font-size: .78rem;
+        }
+
+        .code-bar .ok {
+            margin-left: auto;
+            color: #6ee7a3;
+            font-weight: 500;
+        }
+
+        .code-bar .verb {
+            color: var(--amber);
+            font-weight: 500;
+        }
+
+        pre {
+            margin: 0;
+            padding: 16px 18px 20px;
+            overflow-x: auto;
+            line-height: 1.7;
+        }
+
+        .k {
+            color: var(--code-key);
+        }
+
+        .s {
+            color: var(--code-str);
+        }
+
+        .n {
+            color: var(--code-num);
+        }
+
+        /* Facts strip */
+        .facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0;
+            margin-top: 56px;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            background: var(--surface);
+            overflow: hidden;
+        }
+
+        .fact {
+            padding: 18px 22px;
+            border-right: 1px solid var(--line);
+        }
+
+        .fact:last-child {
+            border-right: 0;
+        }
+
+        .fact b {
+            display: block;
+            font-family: var(--head);
+            font-size: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .fact span {
+            color: var(--muted);
+            font-size: .9rem;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .about-grid p {
+            margin: 0 0 16px;
+            max-width: 60ch;
+        }
+
+        /* Skills */
+        .skill-groups {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+        }
+
+        .group {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 20px 22px;
+        }
+
+        .group h3 {
+            font-size: 1.05rem;
+            margin-bottom: 12px;
+        }
+
+        .chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .chip {
+            font-size: .86rem;
+            padding: 4px 11px;
+            border-radius: 7px;
+            background: var(--accent-soft);
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* Projects */
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .project {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-top: 4px solid var(--accent);
+            border-radius: 14px;
+            padding: 26px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project:nth-child(2) {
+            border-top-color: var(--amber);
+        }
+
+        .project h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .project p {
+            margin: 0 0 14px;
             color: var(--muted);
         }
 
-        .skill-list {
+        .project ul {
+            margin: 0 0 20px;
+            padding-left: 20px;
+        }
+
+        .project li {
+            margin-bottom: 6px;
+        }
+
+        .project .chips {
+            margin-bottom: 18px;
+        }
+
+        .project .link {
+            margin-top: auto;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+
+        /* Timeline */
+        .timeline {
+            border-left: 2px solid var(--line);
+            margin-left: 6px;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: "";
+            position: absolute;
+            left: -8px;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--amber);
+            border: 3px solid var(--bg);
+        }
+
+        .when {
+            font-family: var(--mono);
+            font-size: .85rem;
+            color: var(--muted);
+        }
+
+        .timeline h3 {
+            font-size: 1.4rem;
+            margin: 4px 0 2px;
+        }
+
+        .company {
+            font-weight: 600;
+            margin: 0 0 14px;
+        }
+
+        .timeline ul {
+            padding-left: 20px;
+            margin: 0;
+            max-width: 70ch;
+        }
+
+        .timeline li {
+            margin-bottom: 8px;
+        }
+
+        /* Education */
+        .edu {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            padding: 24px 26px;
             display: flex;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 16px;
+            align-items: center;
         }
 
-        .skill {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 7px 12px;
-            font-size: .92rem;
+        .edu h3 {
+            font-size: 1.3rem;
         }
 
-        .project-link {
-            font-weight: 700;
+        .edu p {
+            margin: 4px 0 0;
+            color: var(--muted);
+        }
+
+        .cgpa {
+            text-align: right;
+        }
+
+        .cgpa b {
+            font-family: var(--head);
+            font-size: 2rem;
+            color: var(--accent);
+            line-height: 1;
+        }
+
+        .cgpa span {
+            display: block;
+            color: var(--muted);
+            font-size: .85rem;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--code-bg);
+            color: var(--code-ink);
+            border-radius: 22px;
+            padding: 56px 40px;
+        }
+
+        .contact h2 {
+            color: #fff;
+        }
+
+        .contact .lead {
+            color: #a9bccd;
+        }
+
+        .contact .btn.primary {
+            background: var(--amber);
+            border-color: var(--amber);
+            color: #1b1204;
+        }
+
+        .contact .btn.secondary {
+            color: #fff;
+            border-color: rgba(255, 255, 255, .35);
+        }
+
+        .contact .btn.secondary:hover {
+            background: rgba(255, 255, 255, .1);
         }
 
         footer {
             text-align: center;
-            padding: 28px 20px;
+            padding: 36px 20px 44px;
             color: var(--muted);
-            border-top: 1px solid #e5e7eb;
-            background: white;
+            font-size: .92rem;
+        }
+
+        @media (max-width: 860px) {
+
+            .hero-grid,
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-grid {
+                gap: 36px;
+            }
+
+            .fact {
+                border-right: 0;
+                border-bottom: 1px solid var(--line);
+            }
+
+            .fact:last-child {
+                border-bottom: 0;
+            }
         }
 
         @media (max-width: 540px) {
             nav {
-                align-items: flex-start;
                 flex-direction: column;
-            }
-
-            .nav-links {
-                gap: 12px;
+                align-items: flex-start;
+                gap: 8px;
             }
 
             section {
-                padding: 44px 0;
+                padding: 56px 0;
             }
 
-            .hero {
-                min-height: 65vh;
+            .projects {
+                grid-template-columns: 1fr;
+            }
+
+            .contact {
+                padding: 40px 24px;
+            }
+
+            .cgpa {
+                text-align: left;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+                scroll-behavior: auto !important;
             }
         }
     </style>
@@ -218,8 +619,8 @@
 
 <body>
     <header>
-        <nav>
-            <a class="logo" href="#home">MyPortfolio</a>
+        <nav class="wrap">
+            <a class="logo" href="#home">Saranya</a>
             <div class="nav-links">
                 <a href="#about">About</a>
                 <a href="#skills">Skills</a>
@@ -231,223 +632,240 @@
         </nav>
     </header>
 
-    <main>
+    <main class="wrap">
 
         <section class="hero" id="home">
-            <span class="tag">Java Backend Developer | Software Engineer</span>
+            <div class="hero-grid">
+                <div>
+                    <!--<p class="role">Java Backend Developer</p>-->
+                    <h1>Hi, I'm Saranya</h1>
+                    <p class="lead">
+                        I'm a software engineer with 2 years of experience building Java backends with
+                        Spring Boot, REST APIs, and microservices. I like writing reliable,
+                        maintainable services that other systems can depend on.
+                    </p>
+                    <div class="buttons">
+                        <a class="btn primary" href="#projects">View my projects</a>
+                        <a class="btn secondary" href="#contact">Get in touch</a>
+                    </div>
+                </div>
 
-            <h1>Hi, I'm <span style="color:#4f46e5">Saranya E</span>.</h1>
+                <div class="hero-visual">
+                    <div class="photo" aria-hidden="false">
+                        SE
+                        <img src="saranya.jpg" alt="Saranya E, Software Engineer" onerror="this.style.display='none'">
+                    </div>
+                    <div class="code" role="img" aria-label="Sample API response describing Saranya E's profile">
+                        <div class="code-bar">
+                            <span class="verb">GET</span> /api/saranya
+                            <span class="ok">200 OK</span>
+                        </div>
+                        <pre>{
+  <span class="k">"name"</span>: <span class="s">"Saranya E"</span>,
+  <span class="k">"role"</span>: <span class="s">"AI Engineer"</span>,
+  <span class="k">"experienceYears"</span>: <span class="n">2</span>,
+  <span class="k">"stack"</span>: [
+    <span class="s">"Java"</span>, <span class="s">"Spring Boot"</span>,
+    <span class="s">"JPA / Hibernate"</span>, <span class="s">"Oracle"</span>
+  ],
+  <span class="k">"education"</span>: <span class="s">"B.Tech IT, CGPA 8.99"</span>,
+  <span class="k">"learning"</span>: <span class="s">"Python"</span>
+}</pre>
+                    </div>
+                </div>
+            </div>
 
-            <p class="intro">
-                Software Engineer with 2 years of experience in Java backend
-                development, Spring Boot, REST APIs, and microservices.
-                I enjoy building reliable backend applications and scalable
-                software solutions.
-            </p>
-
-            <div class="buttons">
-                <a class="btn primary" href="#projects">Explore My Projects ↗</a>
-                <a class="btn secondary" href="#contact">Get In Touch</a>
+            <div class="facts">
+                <div class="fact"><b>2 years</b><span>Backend experience</span></div>
+                <div class="fact"><b>Spring Boot</b><span>Main framework</span></div>
+                <div class="fact"><b>Oracle + MySQL</b><span>Databases</span></div>
+                <!--<div class="fact"><b>8.99 / 10</b><span>B.Tech CGPA</span></div>-->
             </div>
         </section>
-
-
 
         <section id="about">
-            <h2>About Me</h2>
-            <p class="intro">
-                I'm a Software Engineer with 2 years of experience developing
-                backend applications using Java, Spring Boot, and Oracle Database.
-                My experience includes designing REST APIs, implementing
-                database access layers with JPA/Hibernate, writing SQL queries,
-                and supporting application deployments.
-
-                I hold a B.Tech in Information Technology from Karpagam College
-                of Engineering, with a CGPA of 8.99/10. I'm also learning Python
-                and expanding my skills to build efficient, maintainable,
-                and scalable applications.
-            </p>
-        </section>
-
-
-
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <p class="muted">
-                Technologies and tools I have worked with.
-            </p>
-
-            <div class="skill-list">
-                <span class="skill">Java</span>
-                <span class="skill">Python</span>
-                <span class="skill">SQL</span>
-                <span class="skill">JavaScript</span>
-                <span class="skill">Core Java</span>
-                <span class="skill">OOP</span>
-                <span class="skill">Collections Framework</span>
-                <span class="skill">Spring Boot</span>
-                <span class="skill">Spring MVC</span>
-                <span class="skill">REST APIs</span>
-                <span class="skill">JPA</span>
-                <span class="skill">Hibernate</span>
-                <span class="skill">JWT Authentication</span>
-                <span class="skill">Oracle Database</span>
-                <span class="skill">MySQL</span>
-                <span class="skill">Git</span>
-                <span class="skill">Maven</span>
-                <span class="skill">Postman</span>
-                <span class="skill">HTML5</span>
-                <span class="skill">CSS3</span>
+            <h2>About me</h2>
+            <p class="lead">A bit about what I do and where I'm headed.</p>
+            <div class="about-grid">
+                <p>
+                    I develop backend applications using Java, Spring Boot, and Oracle Database.
+                    My work includes designing REST APIs, building data access layers with
+                    JPA/Hibernate, writing SQL queries and stored procedures, and supporting
+                    application deployments.
+                </p>
+                <!--<p>
+                    I hold a B.Tech in Information Technology from Karpagam College of Engineering
+                    with a CGPA of 8.99/10. I'm now learning Python and growing my skills to build
+                    efficient, maintainable, and scalable applications.
+                </p>-->
             </div>
         </section>
 
+        <section id="skills">
+            <h2>Technical skills</h2>
+            <p class="lead">Technologies and tools I have worked with.</p>
 
+            <div class="skill-groups">
+                <div class="group">
+                    <h3>Languages</h3>
+                    <div class="chips">
+                        <span class="chip">Java</span>
+                        <span class="chip">Python</span>
+                        <span class="chip">SQL</span>
+                        <span class="chip">JavaScript</span>
+                    </div>
+                </div>
+                <div class="group">
+                    <h3>Backend</h3>
+                    <div class="chips">
+                        <span class="chip">Core Java</span>
+                        <span class="chip">OOP</span>
+                        <span class="chip">Collections Framework</span>
+                        <span class="chip">Spring Boot</span>
+                        <span class="chip">Spring MVC</span>
+                        <span class="chip">REST APIs</span>
+                        <span class="chip">JWT Authentication</span>
+                    </div>
+                </div>
+                <div class="group">
+                    <h3>Data</h3>
+                    <div class="chips">
+                        <span class="chip">JPA</span>
+                        <span class="chip">Hibernate</span>
+                        <span class="chip">Oracle Database</span>
+                        <span class="chip">MySQL</span>
+                    </div>
+                </div>
+                <div class="group">
+                    <h3>Tools and web</h3>
+                    <div class="chips">
+                        <span class="chip">Git</span>
+                        <span class="chip">Maven</span>
+                        <span class="chip">Postman</span>
+                        <span class="chip">HTML5</span>
+                        <span class="chip">CSS3</span>
+                    </div>
+                </div>
+                <div class="group">
+                    <h3>AI and Data Science</h3>
+                    <div class="chips">
+                        <span class="chip">Machine Learning</span>
+                        <span class="chip">Generative AI</span>
+                        <span class="chip">Statistics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="projects">
-            <h2>Featured Projects</h2>
-            <p class="muted">
-                Projects showcasing my backend development and programming skills.
-            </p>
+            <h2>Featured projects</h2>
+            <p class="lead">Projects showcasing my backend development and programming skills.</p>
 
-            <div class="grid">
-                <article class="card">
-                    <h3>Smart Task Manager</h3>
-                    <p class="muted">Python | JSON File Handling</p>
-
+            <div class="projects">
+                <article class="project">
+                    <h3>E-Commerce Microservices System</h3>
+                    <div class="chips">
+                        <span class="chip">Java</span>
+                        <span class="chip">Spring Boot</span>
+                        <span class="chip">Spring Cloud</span>
+                        <span class="chip">MySQL</span>
+                    </div>
                     <p>
-                        Developed a Python-based task management application
-                        supporting task creation, viewing, updating, deletion,
-                        searching, and completion tracking.
+                        An e-commerce backend split into separate Product, Inventory, and Order microservices.
                     </p>
-
                     <ul>
-                        <li>Used Python data structures, functions, and modular programming.</li>
-                        <li>Implemented JSON file handling for persistent data storage.</li>
-                        <li>Added input validation and exception handling.</li>
-                        <li>Implemented task priorities, due dates, and completion statistics.</li>
+                        <li>Service discovery with Eureka Server.</li>
+                        <li>Centralized routing with Spring Cloud Gateway.</li>
+                        <li>Inter-service communication using OpenFeign.</li>
+                        <li>Database-per-service architecture for service isolation.</li>
                     </ul>
-
-                    <a class="project-link" href="https://github.com/saranyae246">
-                        Explore My GitHub ↗
-                    </a>
+                    <a class="link" href="https://github.com/saranyae246" target="_blank" rel="noopener noreferrer">See
+                        it on GitHub ↗</a>
                 </article>
 
-                <article class="card">
-                    <h3>E-Commerce Microservices System</h3>
-                    <p class="muted">
-                        Java | Spring Boot | Spring Cloud | MySQL
-                    </p>
-
+                <article class="project">
+                    <h3>Smart Task Manager</h3>
+                    <div class="chips">
+                        <span class="chip">Python</span>
+                        <span class="chip">JSON file handling</span>
+                    </div>
                     <p>
-                        Designed and developed an e-commerce backend using
-                        separate Product, Inventory, and Order microservices.
+                        A Python task manager that supports creating, viewing, updating, deleting,
+                        searching, and completing tasks.
                     </p>
-
                     <ul>
-                        <li>Implemented service discovery using Eureka Server.</li>
-                        <li>Configured centralized routing with Spring Cloud Gateway.</li>
-                        <li>Developed inter-service communication using OpenFeign.</li>
-                        <li>Used a database-per-service architecture for service isolation.</li>
+                        <li>Modular code built on Python data structures and functions.</li>
+                        <li>JSON file handling for persistent storage.</li>
+                        <li>Input validation and exception handling.</li>
+                        <li>Task priorities, due dates, and completion statistics.</li>
                     </ul>
-
-                    <a class="project-link" href="https://github.com/saranyae246">
-                        Explore My GitHub ↗
-                    </a>
+                    <a class="link" href="https://github.com/saranyae246" target="_blank" rel="noopener noreferrer">See
+                        it on GitHub ↗</a>
                 </article>
             </div>
         </section>
 
         <section id="experience">
-            <h2>Professional Experience</h2>
+            <h2>Professional experience</h2>
+            <p class="lead">Where I've applied these skills.</p>
 
-            <div class="card">
+            <div class="timeline">
+                <span class="when">June 2024 – May 2026</span>
                 <h3>Software Engineer</h3>
-                <p><strong>Simplain Softwares India Private Limited</strong></p>
-                <p class="muted">June 2024 – May 2026</p>
-
+                <p class="company">Simplain Softwares India Private Limited</p>
                 <ul>
-                    <li>
-                        Developed and maintained backend applications using Java,
-                        Spring Boot, and Oracle Database.
+                    <li>Developed and maintained backend applications using Java, Spring Boot, and Oracle Database.</li>
+                    <li>Designed, developed, and enhanced REST APIs for business workflows and application integration.
                     </li>
-                    <li>
-                        Designed, developed, and enhanced REST APIs to support
-                        business workflows and application integration.
-                    </li>
-                    <li>
-                        Implemented data access layers using JPA and Hibernate.
-                    </li>
-                    <li>
-                        Developed and optimized SQL queries and stored procedures.
-                    </li>
-                    <li>
-                        Performed bug fixing, troubleshooting, and production
-                        issue resolution.
-                    </li>
-                    <li>
-                        Collaborated with cross-functional teams during development,
-                        testing, deployment, and release activities.
-                    </li>
-                    <li>
-                        Assisted with application deployments and post-release
-                        production support.
-                    </li>
+                    <li>Implemented data access layers using JPA and Hibernate.</li>
+                    <li>Developed and optimized SQL queries and stored procedures.</li>
+                    <li>Fixed bugs, troubleshot problems, and resolved production issues.</li>
+                    <li>Worked with cross-functional teams on development, testing, deployment, and releases.</li>
+                    <li>Assisted with application deployments and post-release production support.</li>
                 </ul>
             </div>
         </section>
 
-
-
         <section id="education">
             <h2>Education</h2>
-
-            <div class="card">
-                <h3>B.Tech in Information Technology</h3>
-                <p>Karpagam College of Engineering</p>
-                <p class="muted">November 2020 – May 2024</p>
-                <p><strong>CGPA: 8.99 / 10</strong></p>
+            <div class="edu">
+                <div>
+                    <h3>B.Tech in Information Technology</h3>
+                    <p>Karpagam College of Engineering</p>
+                    <p>November 2020 – May 2024</p>
+                </div>
+                <div class="cgpa"><b>8.99 / 10</b><span>CGPA</span></div>
             </div>
         </section>
 
-
-
         <section id="contact">
-            <h2>Let's Connect</h2>
-
-            <p class="intro">
-                I'm interested in software development opportunities,
-                technical collaborations, and building reliable backend
-                applications. Feel free to connect with me.
-            </p>
-
-            <div class="buttons">
-
-                <a class="btn primary" href="https://mail.google.com/mail/?view=cm&fs=1&to=saranyamadhu2018@gmail.com"
-                    target="_blank" rel="noopener noreferrer">
-                    Email Me ↗
-                </a>
-
-
-                <a class="btn secondary" href="https://www.linkedin.com/in/saranya-e" target="_blank"
-                    rel="noopener noreferrer">
-                    LinkedIn ↗
-                </a>
-
-                <a class="btn secondary" href="https://github.com/saranyae246" target="_blank"
-                    rel="noopener noreferrer">
-                    GitHub ↗
-                </a>
+            <div class="contact">
+                <h2>Let's connect</h2>
+                <p class="lead">
+                    I'm interested in software development opportunities, technical collaborations,
+                    and building reliable backend applications. Feel free to reach out.
+                </p>
+                <div class="buttons">
+                    <a class="btn primary"
+                        href="https://mail.google.com/mail/?view=cm&fs=1&to=saranyamadhu2018@gmail.com" target="_blank"
+                        rel="noopener noreferrer">Email me</a>
+                    <a class="btn secondary" href="https://www.linkedin.com/in/saranya-e" target="_blank"
+                        rel="noopener noreferrer">LinkedIn ↗</a>
+                    <a class="btn secondary" href="https://github.com/saranyae246" target="_blank"
+                        rel="noopener noreferrer">GitHub ↗</a>
+                </div>
             </div>
         </section>
 
     </main>
 
-
     <footer>
-        <p>Designed and developed by Saranya E.</p>
+        <p>Designed and developed by Saranya E. &copy; <span id="year">2026</span></p>
     </footer>
+
     <script>
-        document.getElementById("year").textContent = new Date().getFullYear();
+        var y = document.getElementById("year");
+        if (y) y.textContent = new Date().getFullYear();
     </script>
 </body>
 
